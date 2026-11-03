@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Containers 2040 | Venta de contenedores usados y logística nacional</title>
+<meta name="description" content="Venta de contenedores marítimos usados Dry, Reefer y High Cube de 20’ y 40’. Nacionalizados y no nacionalizados, logística nacional y despacho de aduana en todo el país.">
+<meta name="theme-color" content="#23282d">
+<link rel="icon" href="images/logo-negro.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --acero:#23282d; --grafito:#171a1d; --gris:#5d656d; --humo:#e9ebec; --blanco:#fff;
+  --naranja:#f26a1b; --naranja-osc:#c9520c;
+  --titulo:'Barlow Condensed','Arial Narrow',sans-serif; --texto:'Barlow',Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+picture{display:contents}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:var(--texto);color:var(--acero);line-height:1.6;font-size:1.0625rem;background:var(--blanco)}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--naranja);outline-offset:3px}
+.wrap{width:min(1160px,92%);margin-inline:auto}
+h1,h2,h3{font-family:var(--titulo);line-height:1.02;letter-spacing:.01em;font-weight:800}
+h2{font-size:clamp(2.2rem,5vw,3.4rem);margin-bottom:1rem}
+h3{font-size:1.7rem;font-weight:700}
+p{max-width:62ch}
+.btn{display:inline-block;background:var(--naranja);color:#fff;font-weight:600;text-decoration:none;padding:.85rem 1.6rem;border:0;cursor:pointer;font:600 1rem var(--texto);transition:background .2s}
+.btn:hover{background:var(--naranja-osc)}
+.btn.sec{background:transparent;box-shadow:inset 0 0 0 2px #fff}
+.btn.sec:hover{background:#fff;color:var(--acero)}
+
+/* Header */
+header{position:sticky;top:0;z-index:10;background:var(--blanco);border-bottom:1px solid var(--humo);padding-top:env(safe-area-inset-top,0)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:72px;gap:1rem}
+.bar img{height:52px;width:auto}
+nav ul{display:flex;gap:1.8rem;list-style:none;padding:0;align-items:center}
+nav a{text-decoration:none;font-weight:500}
+nav a:hover{color:var(--naranja-osc)}
+nav .btn{color:#fff;padding:.55rem 1.1rem}
+nav .btn:hover{color:#fff}
+.menu{display:none;background:none;border:0;font:600 1rem var(--texto);padding:.5rem;cursor:pointer}
+
+/* Hero: la chapa ondulada del contenedor */
+.hero{background:
+  repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 14px,rgba(0,0,0,.18) 14px 28px),
+  linear-gradient(180deg,var(--acero),var(--grafito));
+  color:#fff;padding:clamp(4rem,11vw,8rem) 0 0;position:relative}
+.hero h1{font-size:clamp(3rem,9vw,6.4rem);max-width:12ch;text-transform:uppercase}
+.hero p{font-size:1.25rem;margin:1.4rem 0 2rem;color:#d4d8db}
+.hero .acciones{display:flex;gap:1rem;flex-wrap:wrap;padding-bottom:clamp(3rem,7vw,5rem)}
+.franja{background:var(--naranja);color:#fff}
+.franja ul{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,1fr)}
+.franja li{padding:1.1rem 1.4rem;font-weight:600;border-left:2px solid rgba(255,255,255,.35)}
+.franja li:first-child{border-left:0;padding-left:0}
+
+section{padding:clamp(3.5rem,8vw,6rem) 0}
+.nosotros .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,5rem);align-items:center}
+.nosotros .logo-nosotros{width:100%;max-width:400px;height:auto;justify-self:center}
+.nosotros p+p{margin-top:1rem}
+
+.servicios{background:var(--humo)}
+.servicios .lista{margin-top:2.5rem;border-top:2px solid var(--acero)}
+.servicios article{display:grid;grid-template-columns:minmax(200px,1fr) 2fr;gap:2rem;padding:1.6rem 0;border-bottom:1px solid #c5cacd}
+
+.stock .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;margin-top:2.5rem}
+.ficha{border:1px solid #cfd3d6;display:flex;flex-direction:column;background:#fff}
+.carrusel{position:relative;aspect-ratio:3/2;background:var(--humo);overflow:hidden;touch-action:pan-y}
+.slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .7s ease}
+.slide.activa{opacity:1}
+.carrusel .flecha{position:absolute;top:50%;transform:translateY(-50%);width:2.6rem;height:2.6rem;border:0;background:rgba(23,26,29,.65);color:#fff;font:700 1.6rem/1 var(--texto);cursor:pointer;display:grid;place-items:center}
+.carrusel .flecha:hover{background:var(--naranja)}
+.flecha.ant{left:0}.flecha.sig{right:0}
+.puntos{position:absolute;left:0;right:0;bottom:.6rem;display:flex;justify-content:center;gap:.5rem}
+.puntos button{width:.75rem;height:.75rem;padding:0;border:2px solid #fff;background:rgba(23,26,29,.5);cursor:pointer;border-radius:50%}
+.puntos button[aria-current="true"]{background:var(--naranja);border-color:var(--naranja)}
+.ficha .cuerpo{padding:1.4rem;display:flex;flex-direction:column;gap:.8rem;flex:1}
+.ficha dl{display:grid;grid-template-columns:auto 1fr;gap:.2rem 1rem;font-size:.95rem;border-top:1px solid var(--humo);padding-top:.8rem}
+.ficha dt{color:var(--gris)}
+.ficha dd{margin:0;font-weight:500}
+.ficha .btn{margin-top:auto;text-align:center}
+.nota{margin-top:1.2rem;font-size:.9rem;color:var(--gris)}
+
+.usos{background:var(--acero);color:#fff}
+.usos ul{list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:2rem}
+.usos li{border-top:4px solid var(--naranja);padding-top:1rem}
+.usos strong{display:block;font:700 1.5rem var(--titulo)}
+.usos span{color:#c5cacd;font-size:.97rem}
+
+.pasos ol{list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:2.5rem;counter-reset:p}
+.pasos li{counter-increment:p;padding-left:1px}
+.pasos li::before{content:counter(p);display:grid;place-items:center;width:2.6rem;height:2.6rem;background:var(--naranja);color:#fff;font:800 1.5rem var(--titulo);margin-bottom:.8rem}
+.pasos strong{display:block;font:700 1.4rem var(--titulo);margin-bottom:.2rem}
+
+.contacto{background:var(--grafito);color:#fff}
+.contacto .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,5rem)}
+.contacto address{font-style:normal;margin-top:1.6rem;display:grid;gap:.5rem;color:#d4d8db}
+.contacto address a{color:#fff;text-underline-offset:3px}
+form{display:grid;gap:1rem}
+label{display:grid;gap:.3rem;font-weight:500;font-size:.95rem}
+input,select,textarea{font:inherit;padding:.75rem;border:1px solid #4a5157;background:#23282d;color:#fff;border-radius:0;width:100%}
+input:focus,select:focus,textarea:focus{border-color:var(--naranja)}
+.dos{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+footer{background:#0f1113;color:#9aa1a7;font-size:.9rem;padding:1.6rem 0}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+footer img{height:44px}
+
+.wa{position:fixed;right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom,0));z-index:20;background:#1faa59;color:#fff;font-weight:600;text-decoration:none;padding:.8rem 1.2rem;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.wa:hover{background:#178a47}
+
+@media (max-width:860px){
+  .menu{display:block}
+  nav{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--humo);display:none}
+  nav.abierto{display:block}
+  nav ul{flex-direction:column;align-items:flex-start;padding:1rem 4%}
+  .franja ul,.stock .grid,.usos ul,.pasos ol,.nosotros .wrap,.contacto .wrap,.servicios article{grid-template-columns:1fr}
+  .usos ul,.pasos ol{grid-template-columns:1fr 1fr}
+  .franja li{border-left:0;border-top:2px solid rgba(255,255,255,.35);padding-left:0}
+  .franja li:first-child{border-top:0}
+  .servicios article{gap:.4rem}
+}
+@media (max-width:520px){.usos ul,.pasos ol,.dos{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a href="#inicio" aria-label="Containers 2040, inicio"><img src="images/logo-negro.png" alt="Containers 2040"></a>
+    <button class="menu" aria-expanded="false" aria-controls="nav">Menú</button>
+    <nav id="nav" aria-label="Principal">
+      <ul>
+        <li><a href="#nosotros">Quiénes somos</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#contenedores">Contenedores</a></li>
+        <li><a href="#proceso">Cómo trabajamos</a></li>
+        <li><a class="btn" href="#contacto">Cotizar</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="hero" id="inicio">
+  <div class="wrap">
+    <h1>Contenedores usados, entregados donde los necesitás</h1>
+    <p>Vendemos contenedores marítimos Dry, Reefer y High Cube, y nos encargamos de la logística y los trámites de aduana en todo el país.</p>
+    <div class="acciones">
+      <a class="btn" href="#contacto">Cotizar un contenedor</a>
+      <a class="btn sec" href="https://wa.me/5491136530872?text=Hola%2C%20quiero%20cotizar%20un%20contenedor" target="_blank" rel="noopener">Escribinos por WhatsApp</a>
+    </div>
+  </div>
+  <div class="franja">
+    <div class="wrap">
+      <ul>
+        <li>Nacionalizados y no nacionalizados</li>
+        <li>Entrega en todo el país</li>
+        <li>Despachantes de aduana propios</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<section class="nosotros" id="nosotros">
+  <div class="wrap">
+    <img class="logo-nosotros" src="images/logo-negro-grande.png" alt="Containers 2040">
+    <div>
+      <h2>Quiénes somos</h2>
+      <p><strong>Containers 2040</strong> es una empresa argentina especializada en la venta de contenedores usados. Trabajamos con empresas, industrias y particulares de todo el país.</p>
+      <p>Ofrecemos productos de calidad y un servicio ágil, transparente y seguro, adaptado a lo que necesita cada cliente.</p>
+    </div>
+  </div>
+</section>
+
+<section class="servicios" id="servicios">
+  <div class="wrap">
+    <h2>Te acompañamos en todo el proceso</h2>
+    <p>Desde la compra hasta que el contenedor llega a destino, con los trámites resueltos.</p>
+    <div class="lista">
+      <article>
+        <h3>Logística nacional</h3>
+        <p>Coordinamos el traslado de contenedores a cualquier punto del país, con eficiencia operativa y cumplimiento de los plazos de entrega acordados.</p>
+      </article>
+      <article>
+        <h3>Operador ATA</h3>
+        <p>Tenemos experiencia en la operación y gestión de contenedores bajo el régimen ATA, con soluciones prácticas para el movimiento temporal de mercancías.</p>
+      </article>
+      <article>
+        <h3>Despacho de aduana</h3>
+        <p>Contamos con despachantes de aduana propios que se ocupan de todos los trámites y garantizan el cumplimiento de la normativa vigente.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="stock" id="contenedores">
+  <div class="wrap">
+    <h2>Nuestros contenedores</h2>
+    <p>Stock de contenedores Dry y Reefer de 20’ y 40’, seleccionados por su calidad estructural. Opciones nacionalizadas y no nacionalizadas según tu proyecto y presupuesto.</p>
+    <div class="grid">
+      <article class="ficha">
+        <div class="carrusel" role="group" aria-roledescription="carrusel" aria-label="Fotos del contenedor Dry"><picture><source type="image/avif" srcset="images/dry-1.avif"><img class="slide activa" src="images/dry-1.jpg" alt="Contenedor Dry, foto 1 de 3"></picture><picture><source type="image/avif" srcset="images/dry-2.avif"><img class="slide" src="images/dry-2.jpg" alt="Contenedor Dry, foto 2 de 3" loading="lazy"></picture><picture><source type="image/avif" srcset="images/dry-3.avif"><img class="slide" src="images/dry-3.jpg" alt="Contenedor Dry, foto 3 de 3" loading="lazy"></picture><button class="flecha ant" type="button" aria-label="Foto anterior">‹</button><button class="flecha sig" type="button" aria-label="Foto siguiente">›</button><div class="puntos"></div></div>
+        <div class="cuerpo">
+          <h3>Dry 20’ / 40’</h3>
+          <p>Completamente cerrado, para carga seca: mercadería paletizada, maquinaria, materiales de construcción, muebles.</p>
+          <dl><dt>Medidas</dt><dd>20’ y 40’</dd><dt>Ideal para</dt><dd>Carga seca y depósito</dd></dl>
+          <a class="btn" href="#contacto" data-tipo="Dry 20’ / 40’">Cotizar Dry</a>
+        </div>
+      </article>
+      <article class="ficha">
+        <div class="carrusel" role="group" aria-roledescription="carrusel" aria-label="Fotos del contenedor Reefer"><picture><source type="image/avif" srcset="images/reefer-1.avif"><img class="slide activa" src="images/reefer-1.jpg" alt="Contenedor Reefer blanco de 20’ con equipo de refrigeración Carrier"></picture><picture><source type="image/avif" srcset="images/reefer-2.avif"><img class="slide" src="images/reefer-2.jpg" alt="Contenedor Reefer blanco de 40’ en un patio, vista lateral" loading="lazy"></picture><picture><source type="image/avif" srcset="images/reefer-3.avif"><img class="slide" src="images/reefer-3.jpg" alt="Interior de un contenedor Reefer con piso de aluminio ranurado y puertas abiertas" loading="lazy"></picture><button class="flecha ant" type="button" aria-label="Foto anterior">‹</button><button class="flecha sig" type="button" aria-label="Foto siguiente">›</button><div class="puntos"></div></div>
+        <div class="cuerpo">
+          <h3>Reefer 20’ / 40’</h3>
+          <p>Con refrigeración integrada para mantener temperatura controlada. Perfecto para alimentos, medicamentos y productos químicos.</p>
+          <dl><dt>Medidas</dt><dd>20’ y 40’</dd><dt>Ideal para</dt><dd>Carga perecedera</dd></dl>
+          <a class="btn" href="#contacto" data-tipo="Reefer 20’ / 40’">Cotizar Reefer</a>
+        </div>
+      </article>
+      <article class="ficha">
+        <div class="carrusel" role="group" aria-roledescription="carrusel" aria-label="Fotos del contenedor High Cube"><picture><source type="image/avif" srcset="images/highcube-1.avif"><img class="slide activa" src="images/highcube-1.jpg" alt="Contenedor High Cube de 40’ color crema con las puertas a la vista"></picture><picture><source type="image/avif" srcset="images/highcube-2.avif"><img class="slide" src="images/highcube-2.jpg" alt="Contenedor High Cube de 40’ color arena, vista lateral y puertas" loading="lazy"></picture><picture><source type="image/avif" srcset="images/highcube-3.avif"><img class="slide" src="images/highcube-3.jpg" alt="Interior de un contenedor High Cube de 40’ con ambas puertas abiertas" loading="lazy"></picture><button class="flecha ant" type="button" aria-label="Foto anterior">‹</button><button class="flecha sig" type="button" aria-label="Foto siguiente">›</button><div class="puntos"></div></div>
+        <div class="cuerpo">
+          <h3>High Cube</h3>
+          <p>Misma base que el estándar, con 30 cm más de altura interna. Sirve para cargas altas o para aprovechar mejor el espacio.</p>
+          <dl><dt>Medidas</dt><dd>20’ y 40’</dd><dt>Ideal para</dt><dd>Cargas altas y módulos</dd></dl>
+          <a class="btn" href="#contacto" data-tipo="High Cube">Cotizar High Cube</a>
+        </div>
+      </article>
+    </div>
+    <p class="nota">¿No sabés cuál te conviene? Contanos para qué lo vas a usar y te recomendamos.</p>
+  </div>
+</section>
+
+<section class="usos" aria-labelledby="usos-t">
+  <div class="wrap">
+    <h2 id="usos-t">Un contenedor, muchos usos</h2>
+    <ul>
+      <li><strong>Transporte</strong><span>Unidades para mover mercadería.</span></li>
+      <li><strong>Depósito</strong><span>Almacenamiento seguro en obra, campo o planta.</span></li>
+      <li><strong>Oficinas móviles</strong><span>Espacios de trabajo listos para instalar.</span></li>
+      <li><strong>Módulos habitacionales</strong><span>Base para proyectos de vivienda.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="pasos" id="proceso">
+  <div class="wrap">
+    <h2>Cómo trabajamos</h2>
+    <ol>
+      <li><strong>Consulta</strong>Nos contás qué necesitás y para qué.</li>
+      <li><strong>Cotización</strong>Te enviamos opciones y precios.</li>
+      <li><strong>Gestión</strong>Nos ocupamos de aduana y documentación.</li>
+      <li><strong>Entrega</strong>Llevamos el contenedor a tu destino.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="contacto" id="contacto">
+  <div class="wrap">
+    <div>
+      <h2>Pedí tu cotización</h2>
+      <p>Completá el formulario y nuestro equipo te responde a la brevedad. También podés escribirnos o llamarnos directamente.</p>
+      <address>
+        <span>4to piso, Of. 335<br>Hipólito Yrigoyen 850, CABA<br>Buenos Aires, Argentina</span>
+        <a href="tel:+5491136530872">(+54) 9 11 3653-0872</a>
+        <a href="https://wa.me/5491136530872" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="mailto:containers.2040.ar@gmail.com">containers.2040.ar@gmail.com</a>
+        <span><a href="https://www.facebook.com/profile.php?id=61578404727289" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/containers2040" target="_blank" rel="noopener">Instagram</a></span>
+      </address>
+    </div>
+    <form method="post" action="https://formspree.io/f/mldlpeyj">
+      <div class="dos">
+        <label for="name">Nombre<input type="text" name="name" id="name" required autocomplete="name"></label>
+        <label for="phone">Teléfono<input type="tel" name="phone" id="phone" autocomplete="tel"></label>
+      </div>
+      <label for="email">Email<input type="email" name="email" id="email" required autocomplete="email"></label>
+      <div class="dos">
+        <label for="tipo">Contenedor
+          <select name="tipo" id="tipo">
+            <option value="">Todavía no sé</option>
+            <option>Dry 20’ / 40’</option>
+            <option>Reefer 20’ / 40’</option>
+            <option>High Cube</option>
+          </select>
+        </label>
+        <label for="destino">Destino de entrega<input type="text" name="destino" id="destino" placeholder="Ciudad y provincia"></label>
+      </div>
+      <label for="message">Mensaje<textarea name="message" id="message" rows="4"></textarea></label>
+      <button class="btn" type="submit">Enviar consulta</button>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="images/logo-blanco.png" alt="Containers 2040">
+    <span>© Containers 2040. Todos los derechos reservados.</span>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/5491136530872?text=Hola%2C%20quiero%20cotizar%20un%20contenedor" target="_blank" rel="noopener">WhatsApp</a>
+
+<script>
+const nav=document.getElementById('nav'),btn=document.querySelector('.menu');
+btn.addEventListener('click',()=>btn.setAttribute('aria-expanded',nav.classList.toggle('abierto')));
+nav.addEventListener('click',e=>{if(e.target.tagName==='A'){nav.classList.remove('abierto');btn.setAttribute('aria-expanded','false')}});
+document.querySelectorAll('[data-tipo]').forEach(a=>a.addEventListener('click',()=>{document.getElementById('tipo').value=a.dataset.tipo}));
+
+document.querySelectorAll('.carrusel').forEach((c,n)=>{
+  const s=[...c.querySelectorAll('.slide')],d=c.querySelector('.puntos');
+  if(s.length<2){c.querySelectorAll('.flecha,.puntos').forEach(e=>e.remove());return}
+  let i=0,bloqueo=0,encima=false,x0=null;
+  const pts=s.map((_,k)=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Ver foto '+(k+1));b.onclick=()=>manual(k);d.append(b);return b});
+  function ir(k){i=(k+s.length)%s.length;s.forEach((e,j)=>e.classList.toggle('activa',j===i));pts.forEach((b,j)=>b.setAttribute('aria-current',j===i))}
+  function manual(k){bloqueo=Date.now()+10000;ir(k)}
+  c.querySelector('.ant').onclick=()=>manual(i-1);
+  c.querySelector('.sig').onclick=()=>manual(i+1);
+  c.addEventListener('mouseenter',()=>encima=true);
+  c.addEventListener('mouseleave',()=>encima=false);
+  c.addEventListener('focusin',()=>encima=true);
+  c.addEventListener('focusout',()=>encima=false);
+  c.addEventListener('touchstart',e=>{x0=e.touches[0].clientX},{passive:true});
+  c.addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(dx)>40)manual(i+(dx<0?1:-1))});
+  ir(0);
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+    setTimeout(()=>setInterval(()=>{if(!encima&&!document.hidden&&Date.now()>bloqueo)ir(i+1)},5000),n*1500);
+  }
+});
+</script>
+</body>
+</html>
